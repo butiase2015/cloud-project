@@ -58,7 +58,7 @@ for item in data['articles']:
             tempObject[key] = value
     
     finalDisplay.append(tempObject)
-    #print(finalDisplay)10
+    #print(finalDisplay)
 
 print(json.dumps(finalDisplay, indent=2))
 
