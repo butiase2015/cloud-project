@@ -3,6 +3,8 @@ import urllib.parse
 import base64
 key ="NTczZWUwZDVmMmZjNDFiYmE3N2E4YjVlMjQyYmMwMjI="
 
+finalDisplay=[]
+
 def checkChoice(choice):
     if choice == "1":
         query = str(input("I would like to search for news about... "))
@@ -14,7 +16,7 @@ def checkChoice(choice):
         query = str(input("I would like to search for news related to... "))
         country =str(input("in the country of... "))
 
-        URL="https://newsapi.org/v2/top-headlines?country="+urllib.parse.quote(country)+"&category="+urllib.parse.quote(query)+"&apiKey="+base64.b64decode(key)
+        URL="https://newsapi.org/v2/top-headlines?country="+urllib.parse.quote(country)+"&category="+urllib.parse.quote(query)+"&apiKey="+str(base64.b64decode(key).decode("utf-8"))
 
         return URL
 
@@ -41,8 +43,17 @@ final=checkChoice(choice)
 
 r= requests.get(url=final)
 data = r.json()
-for item in data[articles]:
-    print (item)
+for item in data['articles']:
+    for key, value in item.items():
+        tempObject ={}
+        if key == "url" or key == "title":
+            tempObject[key] = value
+    
+    finalDisplay.append(tempObject)
+    print(finalDisplay)
+
+print(json.dumps(finalDisplay, indent=2))
+
 
 
 #print(data)
