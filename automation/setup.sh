@@ -13,12 +13,15 @@ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sour
 sudo apt-cache policy docker-ce && sudo apt -y install docker-ce
 
 
-sudo apt-get install -y docker-compose git docker-compose
+sudo apt-get install -y docker-compose git docker-compose apache2
 sudo usermod -aG docker ${USER}
 
 
 sudo docker pull jenkins/jenkins:lts
 sudo docker run -d -p 8080:8080 jenkins/jenkins:lts
+
+
+sudo systemctl enable apache2 && sudo systemctl restart apache2
 
 
 

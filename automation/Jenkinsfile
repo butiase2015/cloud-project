@@ -1,0 +1,23 @@
+pipeline {
+  agent any
+  stages {
+    stage('build') {
+      
+      steps {
+
+        sh 'sudo mv static/* /var/www/html'
+        
+      }
+    }
+    stage('deploy') {
+      
+      steps {
+
+        sh 'sudo apache2 restart'
+        sh 'echo "Site is running"'
+        
+      }
+    }
+
+  }
+}
