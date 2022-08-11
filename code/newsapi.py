@@ -1,14 +1,16 @@
 import requests
 import urllib.parse
 import base64
-key ="NTczZWUwZDVmMmZjNDFiYmE3N2E4YjVlMjQyYmMwMjI="
+import json
+import pprint
+hidden ="NTczZWUwZDVmMmZjNDFiYmE3N2E4YjVlMjQyYmMwMjI="
 
 finalDisplay=[]
 
 def checkChoice(choice):
     if choice == "1":
         query = str(input("I would like to search for news about... "))
-        URL="https://newsapi.org/v2/everything?q="+str(urllib.parse.quote(query))+"&from=2022-08-11&sortBy=publishedAt&apiKey="+str(base64.b64decode(key).decode("utf-8"))
+        URL="https://newsapi.org/v2/everything?q="+str(urllib.parse.quote(query))+"&from=2022-08-11&sortBy=publishedAt&apiKey="+str(base64.b64decode(hidden).decode("utf-8"))
     
         return URL
 
@@ -16,17 +18,21 @@ def checkChoice(choice):
         query = str(input("I would like to search for news related to... "))
         country =str(input("in the country of... "))
 
-        URL="https://newsapi.org/v2/top-headlines?country="+urllib.parse.quote(country)+"&category="+urllib.parse.quote(query)+"&apiKey="+str(base64.b64decode(key).decode("utf-8"))
+        URL="https://newsapi.org/v2/top-headlines?country="+urllib.parse.quote(country)+"&category="+urllib.parse.quote(query)+"&apiKey="+str(base64.b64decode(hidden).decode("utf-8"))
 
         return URL
 
     elif choice == "3" :
-        print("Thansk for using our service ..... Bye")
+        print("Thanks for using our service ..... Bye")
         
         return (exit())
     else:
-        print("Invalid choice")
-        checkChoice(choice)
+        try:
+            choice = str(input("I would like to pick... "))
+
+            return checkChoice(choice)
+        except:
+            print("Invalid choice")
 
 
 
@@ -44,13 +50,15 @@ final=checkChoice(choice)
 r= requests.get(url=final)
 data = r.json()
 for item in data['articles']:
+    tempObject ={}
     for key, value in item.items():
-        tempObject ={}
+        
+        
         if key == "url" or key == "title":
             tempObject[key] = value
     
     finalDisplay.append(tempObject)
-    print(finalDisplay)
+    #print(finalDisplay)10
 
 print(json.dumps(finalDisplay, indent=2))
 
