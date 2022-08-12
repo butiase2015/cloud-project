@@ -1,0 +1,7 @@
+This is setup meant to mimic most on-premise networks Architecture.In the sense that you have DMZ facing publicly and the other networsk are NATted or Using only private communications
+With this diagram we can assume each spoke is an environment, and the hub is the DMZ.
+each ENV connects directly to the DMZ seperately.What it means is that DEV has no way to commmunicate with PROD or with STAGING and vice versa
+this helps protect internal resources.
+
+NB: to make the terraform code reusable I had to make core resources group in a module folder  and  then call them from wherever I will need them.
+The files in the module folder are not broken down properly and I would love to explain directly why is that.
