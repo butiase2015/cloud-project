@@ -13,7 +13,7 @@ resource "aws_elb" "example" {
     unhealthy_threshold = var.unhealthy_threshold
   }
 
-  
+
   listener {
     lb_port           = var.elb_port
     lb_protocol       = var.lb_protocol

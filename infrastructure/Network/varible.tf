@@ -1,4 +1,4 @@
 variable "peer_owner_id" {
-  type    = string
+  type = string
   //default = "431617346510"
 }

@@ -1,4 +1,4 @@
-resource "aws_security_group" "elb" {
+resource "aws_security_group" "test" {
   name = var.security_group_name
 
   ingress {

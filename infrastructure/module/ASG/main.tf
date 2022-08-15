@@ -12,7 +12,8 @@ resource "aws_autoscaling_group" "example" {
   health_check_type = var.health_check_type
 
   tag {
-    Name                 = var.tag_key
+    key                = var.tag_key
+    value               = var.tag_value
     propagate_at_launch = var.tag_propagate_at_launch
   }
 }

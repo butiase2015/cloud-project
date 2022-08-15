@@ -1,20 +1,21 @@
 variable "image_id" {
-    type= string
-  
+  type = string
+
+}
+variable "instance_type" {
+  type = string
+
 }
 
+
+
 variable "security_groups" {
-    type= list(string)
-  
+  type = list(string)
+
 }
 
 variable "user_data" {
-    type= string
-  
-}
-variable "destroy" {
-    type= bool
-  
-}
+  type = string
 
+}
 
